@@ -19,7 +19,17 @@ class RoleMiddleware
         // we redirect to the root
         return redirect('/');
 
+                                        // ^
+                                        // |    before the request
+                                        // |
+
         // then we do the next req
-        return $next($request);
+        return $next($request);         // this is the request
+
+                                        // |
+                                        // |    after the request [response]
+                                        // ⌄
+
+
     }
 }
