@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    $user = Auth::user();
+
+    if ($user) {
+        if ($user->isAdmin()) {
+            echo "this is admin user";
+        }
+    }
+
     return view('welcome');
 });
 
@@ -22,6 +31,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('admin/user/roles', ['middleware' => ['role', 'isAdmin'], function () {
-    return "Role Middleware";
-}]);
+// Route::get('admin/user/roles', ['middleware' => ['role', 'isAdmin'], function () {
+//     return "Role Middleware";
+// }]);
