@@ -32,16 +32,29 @@ class HomeController extends Controller
 
         // return $request->session()->all();
 
-        session(['shad2' => 'learning']);
+        // session(['shad2' => 'learning']);
         // echo session('shad2');
 
         // deleting a specific session
-        $request->session()->forget('shad2');
+        // $request->session()->forget('shad2');
 
         // delete all the session
-        $request->session()->flush();
+        // $request->session()->flush();
 
-        return $request->session()->all();
+
+        // flashing data
+        // data stored for only one session
+        // next time its gone
+        // $request->session()->flash('message', 'post has been created');
+
+        // to keep the data abit more [little longer than flash]
+        // $request->session()->reflash();
+
+        // to keep only one msg and delete all else
+        // $request->session()->keep('message');
+
+
+        return $request->session()->get('message');
 
         // return view('home');
     }
